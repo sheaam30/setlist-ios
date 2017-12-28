@@ -21,17 +21,25 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.title = "SetLists"
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewSetList))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewSetListDialog))
         self.navigationItem.rightBarButtonItem = addButton
-//        self.navigationItem.leftBarButtonItem = editButtonItem
 
         listOfSetLists = dataStore.loadSetList()
         tableView.reloadData()
-        // Do any additional setup after loading the view.
     }
     
-    @objc func addNewSetList() {
-        let newItem = SetList(name:"Item")
+    @objc private func addNewSetListDialog() {
+        let addDialog = UIAlertController(title: "New Set List", message: "Enter new set list name", preferredStyle: .alert)
+        
+        addDialog.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in self.addSetList(setListName: addDialog.textFields![0].text! )} ))
+        addDialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        addDialog.addTextField(configurationHandler: { _ in })
+    
+        self.present(addDialog, animated: true, completion: nil)
+    }
+    
+    private func addSetList(setListName: String) {
+        let newItem = SetList(name: setListName)
         listOfSetLists.append(newItem)
         tableView.reloadData()
         dataStore.saveSetList(listOfSetLists: listOfSetLists)
@@ -49,11 +57,11 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func showConfirmDelete(setListString:String) {
+    private func showConfirmDelete(setListString:String) {
         let alert = UIAlertController(title: "Delete Set List", message: "Are you sure you want to permanently delete \(setListString)?", preferredStyle: .actionSheet)
         
         let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteSetList)
-        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteSetList)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
@@ -62,14 +70,10 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.present(alert, animated: true, completion: nil)
     }
     
-    func handleDeleteSetList(alertAction: UIAlertAction!) -> Void {
+    private func handleDeleteSetList(alertAction: UIAlertAction!) -> Void {
         listOfSetLists.remove(at: (selectedRow?.row)!)
         tableView.deleteRows(at: [selectedRow!], with: .fade)
         dataStore.saveSetList(listOfSetLists: listOfSetLists)
-    }
-    
-    func cancelDeleteSetList(alertAction: UIAlertAction!) -> Void  {
-        selectedRow = nil
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

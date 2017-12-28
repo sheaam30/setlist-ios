@@ -16,13 +16,13 @@ class SetListDataStore: SetListDataStoreProtocol {
 
     func loadSetList() -> [SetList] {
         var setListData:[SetList] = []
-        let data = UserDefaults.standard.data(forKey: SetListKey)
-
-        if let listData = try? decoder.decode([SetList].self, from: data!)
-        {
-            setListData = listData
-        }
+        if let data = UserDefaults.standard.data(forKey: SetListKey) {
         
+            if let listData = try? decoder.decode([SetList].self, from: data)
+            {
+                setListData = listData
+            }
+        }
         return setListData
     }
     
