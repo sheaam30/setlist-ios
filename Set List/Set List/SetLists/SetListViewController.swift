@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SetListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,7 +15,8 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var listOfSetLists:[SetList] = []
     var selectedRow:IndexPath?
-    var dataStore:SetListDataStore = SetListDataStore()
+    var dataStore = SetListDataStore()
+    let setListMapper = SetListMapper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +26,60 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewSetListDialog))
         self.navigationItem.rightBarButtonItem = addButton
 
+        // Add Observer
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(managedObjectChanged), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+    
         listOfSetLists = dataStore.loadSetList()
         tableView.reloadData()
+    }
+    
+    @objc private func managedObjectChanged(_ notification: Notification) {
+        
+        if let inserts = notification.userInfo![NSInsertedObjectsKey] as? Set<NSManagedObject>, inserts.count > 0 {
+            for insert in inserts {
+                if (insert is SetListModel) {
+                    let setListModel = insert  as! SetListModel
+                    listOfSetLists.append(SetList(setListModel.name!))
+                }
+                tableView.reloadData()
+            }
+        }
+        
+        if let updates = notification.userInfo![NSUpdatedObjectsKey] as? Set<NSManagedObject>, updates.count > 0 {
+            for update in updates {
+                print(update)
+            }
+        }
+        
+        if let deletes = notification.userInfo![NSDeletedObjectsKey] as? Set<NSManagedObject>, deletes.count > 0 {
+            for delete in deletes {
+                print(delete)
+                if (delete is SetListModel) {
+                    let setListModel = delete as! SetListModel
+                    let targetSetList = setListMapper.mapFromDbModel(type: setListModel)
+                    if let index = listOfSetLists.index(where: { (setList) -> Bool in
+                        if (setList == targetSetList) {
+                            return true
+                        }
+                        return false
+                    }) {
+                        listOfSetLists.remove(at: index)
+                    tableView.reloadData()
+                    }
+                    
+                }
+//                tableView.deleteRows(at: [selectedRow!], with: .fade)
+            }
+        }
     }
     
     @objc private func addNewSetListDialog() {
         let addDialog = UIAlertController(title: "New Set List", message: "Enter new set list name", preferredStyle: .alert)
         
-        addDialog.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in self.addSetList(setListName: addDialog.textFields![0].text! )} ))
+        addDialog.addAction(UIAlertAction(title: "Add", style: .default, handler: {
+                _ in self.addSetList(setListName: addDialog.textFields![0].text! )}
+        ))
         addDialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         addDialog.addTextField(configurationHandler: { _ in })
     
@@ -39,17 +87,13 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func addSetList(setListName: String) {
-        let newItem = SetList(name: setListName)
-        listOfSetLists.append(newItem)
-        tableView.reloadData()
-        dataStore.saveSetList(listOfSetLists: listOfSetLists)
+        dataStore.saveSetList(SetList(setListName))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfSetLists.count
     }
 
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             selectedRow = indexPath
@@ -71,14 +115,21 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func handleDeleteSetList(alertAction: UIAlertAction!) -> Void {
-        listOfSetLists.remove(at: (selectedRow?.row)!)
-        tableView.deleteRows(at: [selectedRow!], with: .fade)
-        dataStore.saveSetList(listOfSetLists: listOfSetLists)
+        dataStore.removeSetList(setList: listOfSetLists[(selectedRow?.row)!])
+//        listOfSetLists.remove(at: (selectedRow?.row)!)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setListItem") as? SetListItemViewCell
         cell?.name.text = listOfSetLists[indexPath.row].name
+        let format = NSLocalizedString("NumberOfMessages", comment: "")
+        let message = String.localizedStringWithFormat(format, listOfSetLists[indexPath.row].songs.count)
+        cell?.songCount.text = message
+
+
+//        cell?.songCount.text =
+//            String(format: NSLocalizedString("NumberOfMessages", comment: ""), 1)
+        
         return cell!
     }
     
@@ -91,7 +142,7 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         let songViewController:SongListViewController = segue.destination as! SongListViewController
-        songViewController.setList = listOfSetLists[(selectedRow?.row)!]
+        songViewController.setListName = listOfSetLists[(selectedRow?.row)!].name
     }
 
     override func didReceiveMemoryWarning() {

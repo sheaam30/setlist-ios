@@ -13,7 +13,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var playedSwitch: UISwitch!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var checkBox: UIButton!
+    
+    var boxCheckedFunction: ((Bool) -> Void)? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,12 +22,11 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func onChanged(_ sender: Any) {
-        print("Switch changed")
+        boxCheckedFunction?(playedSwitch.isOn)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
