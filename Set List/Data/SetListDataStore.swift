@@ -10,13 +10,12 @@ import UIKit
 import CoreData
 
 class SetListDataStore: SetListDataStoreProtocol {
-   
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let SetListKey = "listOfSetList"
     let setListMapper = SetListMapper()
     let songMapper = SongMapper()
-    let setListValidator = SetListValidator()
     
     func loadSetList() -> [SetList] {
         var setListData:[SetList] = []
@@ -34,7 +33,7 @@ class SetListDataStore: SetListDataStoreProtocol {
         return setListData
       
     }
-    
+
     func removeSetList(setList: SetList) {
         let setList = getSetListModel(with: setList.name!)
         context.delete(setList!)

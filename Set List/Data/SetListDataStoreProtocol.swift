@@ -21,4 +21,5 @@ protocol SetListDataStoreProtocol {
     func removeSetList(setList: SetList)
     
     func updateSetList(with setList: SetList)
+    
 }

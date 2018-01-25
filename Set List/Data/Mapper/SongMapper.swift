@@ -23,11 +23,12 @@ class SongMapper: Mapper {
         songModel.name = model.name
         songModel.artist = model.artist
         songModel.genre = model.genre
+        songModel.played = model.played!
         return songModel
     }
     
     func mapFromDbModel(type: SongModel) -> Song {
-        var song = Song(songName: type.name!, artist: type.artist!, genre: type.genre!)
+        let song = Song(songName: type.name!, artist: type.artist!, genre: type.genre!, played: type.played)
         return song
     }
     

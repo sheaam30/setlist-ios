@@ -17,12 +17,14 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
     var dataStore = SetListDataStore()
     var setListMapper = SetListMapper()
     var setList:SetList? = nil
+    var addButton: UIBarButtonItem? = nil
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddSongDialog))
-        self.navigationItem.rightBarButtonItems = [addButton, editButtonItem]
+        self.addButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddSongDialog))
+        
+        self.navigationItem.rightBarButtonItems = [addButton!, editButtonItem]
         // Add Observer
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(managedObjectChanged), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
@@ -44,11 +46,16 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        self.navigationItem.setHidesBackButton(editing, animated: true)
         tableView.setEditing(editing, animated: animated)
+        if (editing) {
+            self.navigationItem.rightBarButtonItems = [editButtonItem]
+        } else {
+            self.navigationItem.rightBarButtonItems = [addButton!, editButtonItem]
+        }
     }
     
     @objc private func showAddSongDialog() {
@@ -98,7 +105,7 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func addSong(_ songName: String, _ songArtist: String, _ songGenre: String) {
-        dataStore.addSong(to: setList!, Song(songName: songName, artist: songArtist, genre: songGenre))
+        dataStore.addSong(to: setList!, Song(songName: songName, artist: songArtist, genre: songGenre, played: false))
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -112,38 +119,35 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell
         
-        let nameText = setList?.songs[indexPath.row].name
-        let artistText = setList?.songs[indexPath.row].artist
+        let nameText = setList!.songs[indexPath.row].name
+        let artistText = setList!.songs[indexPath.row].artist
+        let isOn = setList!.songs[indexPath.row].played
         
         cell?.boxCheckedFunction = { (selected: Bool) -> Void in
+            self.setList?.songs[indexPath.row].played = selected
+            self.dataStore.updateSetList(with: self.setList!)
             cell?.nameLabel.strikeThrough(text: nameText!, should: selected)
             cell?.artistLabel.strikeThrough(text: artistText!, should: selected)
         }
         cell?.nameLabel.text = nameText
         cell?.artistLabel.text = artistText
+        cell?.playedSwitch.isOn = isOn!
+        
+        if (isOn)! {
+            cell?.nameLabel.strikeThrough(text: nameText!, should: isOn!)
+            cell?.artistLabel.strikeThrough(text: artistText!, should: isOn!)
+        }
         
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func save() {
-        UserDefaults.standard.set(setList, forKey: "setlist")
-        UserDefaults.standard.synchronize()
-    }
-    
-    func load() {
-        if let setListData = UserDefaults.standard.value(forKey: "setlist") as? SetList        {
-            setList = setListData
-            tableView.reloadData()
-        }
-    }
+
 }
 
 extension UILabel {

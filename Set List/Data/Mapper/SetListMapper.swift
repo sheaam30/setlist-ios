@@ -28,9 +28,9 @@ class SetListMapper: Mapper {
     func mapFromDbModel(type: SetListModel) -> SetList {
         var setList = SetList(type.name!)
         var songs = [Song]()
-        var mysongs = type.songs
         for songModel in type.songs?.allObjects as! [SongModel] {
-            songs.append(songMapper.mapFromDbModel(type: songModel))
+            let mappedSong = songMapper.mapFromDbModel(type: songModel)
+            songs.append(mappedSong)
         }
 
         setList.songs = songs

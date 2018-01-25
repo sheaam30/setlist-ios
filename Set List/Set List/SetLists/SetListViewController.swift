@@ -42,14 +42,26 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
                     let setListModel = insert  as! SetListModel
                     listOfSetLists.append(SetList(setListModel.name!))
                 }
-                tableView.reloadData()
             }
+            tableView.reloadData()
         }
         
         if let updates = notification.userInfo![NSUpdatedObjectsKey] as? Set<NSManagedObject>, updates.count > 0 {
             for update in updates {
-                print(update)
+                if (update is SetListModel) {
+                    let setListModel = update as! SetListModel
+                
+                    if let index = listOfSetLists.index(where: { (setList) -> Bool in
+                        if (setList.name == setListModel.name) {
+                            return true
+                        }
+                        return false
+                    }) {
+                         listOfSetLists[index] = setListMapper.mapFromDbModel(type: setListModel)
+                    }
+                }
             }
+            tableView.reloadData()
         }
         
         if let deletes = notification.userInfo![NSDeletedObjectsKey] as? Set<NSManagedObject>, deletes.count > 0 {
@@ -65,11 +77,9 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
                         return false
                     }) {
                         listOfSetLists.remove(at: index)
-                    tableView.reloadData()
+                        tableView.reloadData()
                     }
-                    
                 }
-//                tableView.deleteRows(at: [selectedRow!], with: .fade)
             }
         }
     }
@@ -102,7 +112,9 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func showConfirmDelete(setListString:String) {
-        let alert = UIAlertController(title: "Delete Set List", message: "Are you sure you want to permanently delete \(setListString)?", preferredStyle: .actionSheet)
+        let title = NSLocalizedString("delete_set_list_title", comment: "")
+        let message = String(format: NSLocalizedString("delete_set_list_message", comment: ""), setListString)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
         let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteSetList)
         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -116,20 +128,15 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private func handleDeleteSetList(alertAction: UIAlertAction!) -> Void {
         dataStore.removeSetList(setList: listOfSetLists[(selectedRow?.row)!])
-//        listOfSetLists.remove(at: (selectedRow?.row)!)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setListItem") as? SetListItemViewCell
         cell?.name.text = listOfSetLists[indexPath.row].name
+        
         let format = NSLocalizedString("NumberOfMessages", comment: "")
         let message = String.localizedStringWithFormat(format, listOfSetLists[indexPath.row].songs.count)
         cell?.songCount.text = message
-
-
-//        cell?.songCount.text =
-//            String(format: NSLocalizedString("NumberOfMessages", comment: ""), 1)
-        
         return cell!
     }
     

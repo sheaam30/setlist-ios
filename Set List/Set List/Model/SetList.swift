@@ -25,9 +25,6 @@ struct SetList: Codable, Equatable {
         } else {
             return true
         }
-//        for 0 ... lhs.songs.count {
-//
-//        }
     }
     
 }
