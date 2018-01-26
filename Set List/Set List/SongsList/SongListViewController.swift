@@ -12,11 +12,11 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var setList:SetList?
+    var setList: SetList?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addSong))
         self.navigationItem.rightBarButtonItem = addButton
 //        self.navigationItem.leftBarButtonItem = editButtonItem
@@ -27,7 +27,7 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
 
     func setupData() {
         
-        let song:Song = Song(songName: "Name", artist: "Artist", genre: "Genre", setList: SetList(name: "List"))
+        let song = Song(name: "Name", artist: "Artist", genre: "Genre", setList: SetList(name: "List"))
         setList?.songs.append(song)
         setList?.songs.append(song)
         setList?.songs.append(song)
@@ -51,16 +51,20 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell
-        cell?.nameLabel.text = (setList?.songs[indexPath.row].song!)! + indexPath.row.description
-        cell?.artistLabel.text = (setList?.songs[indexPath.row].artist!)! + indexPath.row.description
-        
-        return cell!
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell else {
+            return UITableViewCell()
+        }
+        guard let song = setList?.songs[indexPath.row] else { return cell }
+        let nameText = "\(song.name) \(indexPath.row)"
+        let artistText = "\(song.artist) \(indexPath.row)"
+        cell.nameLabel.text = nameText
+        cell.artistLabel.text = artistText
+    
+        return cell
     }
     
     @objc func addSong() {
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -72,12 +76,12 @@ class SongListViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func save() {
+    private func save() {
         UserDefaults.standard.set(setList, forKey: "setlist")
         UserDefaults.standard.synchronize()
     }
     
-    func load() {
+    private func load() {
         if let setListData = UserDefaults.standard.value(forKey: "setlist") as? SetList        {
             setList = setListData
             tableView.reloadData()

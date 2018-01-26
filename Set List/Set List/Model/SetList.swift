@@ -10,10 +10,10 @@ import Foundation
 
 struct SetList: Codable {
     
-    let name: String?
-    var songs:[Song] = []
+    let name: String
+    var songs: [Song] = []
     
-    init(name:String = "default") {
+    init(name: String = "default") {
         self.name = name
     }
 }

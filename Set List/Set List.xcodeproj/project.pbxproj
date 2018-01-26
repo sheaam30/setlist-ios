@@ -18,7 +18,7 @@
 		4866CE681FDC120800F6DF7B /* Set_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE671FDC120800F6DF7B /* Set_ListUITests.swift */; };
 		4866CE771FDC147400F6DF7B /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE761FDC147400F6DF7B /* Song.swift */; };
 		4866CE791FDC157600F6DF7B /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE781FDC157600F6DF7B /* SetList.swift */; };
-		489C7FB61FEDF7C700EC3624 /* SetListDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */; };
+		489C7FB61FEDF7C700EC3624 /* SetListStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C7FB51FEDF7C700EC3624 /* SetListStoring.swift */; };
 		489C7FB81FEDFCF200EC3624 /* SetListDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */; };
 		489E6BDC1FDF225E0097F53C /* SetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E6BDB1FDF225E0097F53C /* SetListViewController.swift */; };
 		489E6BE01FDF2B450097F53C /* SetListItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E6BDF1FDF2B450097F53C /* SetListItemViewCell.swift */; };
@@ -59,7 +59,7 @@
 		4866CE691FDC120800F6DF7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4866CE761FDC147400F6DF7B /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		4866CE781FDC157600F6DF7B /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
-		489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListDataStoreProtocol.swift; sourceTree = "<group>"; };
+		489C7FB51FEDF7C700EC3624 /* SetListStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListStoring.swift; sourceTree = "<group>"; };
 		489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListDataStore.swift; sourceTree = "<group>"; };
 		489E6BDB1FDF225E0097F53C /* SetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListViewController.swift; sourceTree = "<group>"; };
 		489E6BDF1FDF2B450097F53C /* SetListItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItemViewCell.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		4866CE461FDC120800F6DF7B /* Set List */ = {
 			isa = PBXGroup;
 			children = (
-				489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */,
+				489C7FB51FEDF7C700EC3624 /* SetListStoring.swift */,
 				489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */,
 				489E6BDD1FDF2AEA0097F53C /* SetLists */,
 				489E6BDE1FDF2B130097F53C /* SongsList */,
@@ -316,7 +316,7 @@
 				4866CE791FDC157600F6DF7B /* SetList.swift in Sources */,
 				4866CE4A1FDC120800F6DF7B /* SongListViewController.swift in Sources */,
 				4866CE771FDC147400F6DF7B /* Song.swift in Sources */,
-				489C7FB61FEDF7C700EC3624 /* SetListDataStoreProtocol.swift in Sources */,
+				489C7FB61FEDF7C700EC3624 /* SetListStoring.swift in Sources */,
 				4866CE481FDC120800F6DF7B /* AppDelegate.swift in Sources */,
 				489E6BE01FDF2B450097F53C /* SetListItemViewCell.swift in Sources */,
 				484EBDD21FDC598C0088A584 /* AddItemViewController.swift in Sources */,

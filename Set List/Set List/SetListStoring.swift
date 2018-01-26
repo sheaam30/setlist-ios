@@ -1,5 +1,5 @@
 //
-//  SetlistDataStore.swift
+//  SetlistStoring.swift
 //  Set List
 //
 //  Created by Adam Shea on 12/22/17.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol SetListDataStoreProtocol {
+protocol SetListStoring {
     
-    func saveSetList(listOfSetLists:[SetList])
+    func saveSetList(listOfSetLists: [SetList])
     
     func loadSetList() -> [SetList]
 }

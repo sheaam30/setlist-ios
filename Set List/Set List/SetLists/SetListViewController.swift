@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SetListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class SetListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var listOfSetLists:[SetList] = []
-    var selectedRow:IndexPath?
-    var dataStore:SetListDataStore = SetListDataStore()
+    private var listOfSetLists: [SetList] = []
+    private var selectedRow: IndexPath?
+    private var dataStore: SetListDataStore = SetListDataStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,10 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc private func addNewSetListDialog() {
         let addDialog = UIAlertController(title: "New Set List", message: "Enter new set list name", preferredStyle: .alert)
-        
-        addDialog.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in self.addSetList(setListName: addDialog.textFields![0].text! )} ))
+        let newListAction = UIAlertAction(title: "Add", style: .default) { _ in
+            self.addSetList(setListName: addDialog.textFields![0].text!)
+        }
+        addDialog.addAction(newListAction)
         addDialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         addDialog.addTextField(configurationHandler: { _ in })
     
@@ -53,7 +55,7 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             selectedRow = indexPath
-            showConfirmDelete(setListString: listOfSetLists[indexPath.row].name!)
+            showConfirmDelete(setListString: listOfSetLists[indexPath.row].name)
         }
     }
     

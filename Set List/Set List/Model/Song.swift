@@ -10,13 +10,13 @@ import Foundation
 
 struct Song: Codable {
     
-    let song:String?
-    let artist:String?
-    let genre:String?
-    let setList:SetList?
+    let name: String
+    let artist: String
+    let genre: String
+    let setList: SetList
     
-    init(songName: String, artist: String, genre: String, setList: SetList) {
-        self.song = songName
+    init(name: String, artist: String, genre: String, setList: SetList) {
+        self.name = name
         self.artist = artist
         self.genre = genre
         self.setList = setList

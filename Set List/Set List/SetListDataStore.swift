@@ -8,14 +8,14 @@
 
 import UIKit
 
-class SetListDataStore: SetListDataStoreProtocol {
+class SetListDataStore: SetListStoring {
     
     let SetListKey = "listOfSetList"
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
 
     func loadSetList() -> [SetList] {
-        var setListData:[SetList] = []
+        var setListData: [SetList] = []
         if let data = UserDefaults.standard.data(forKey: SetListKey) {
         
             if let listData = try? decoder.decode([SetList].self, from: data)
