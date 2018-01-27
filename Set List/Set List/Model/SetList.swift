@@ -8,12 +8,23 @@
 
 import Foundation
 
-struct SetList: Codable {
+struct SetList: Codable, Equatable {
     
     let name: String?
-    var songs:[Song] = []
+    var songs:[Song]
     
-    init(name:String = "default") {
+    init(_ name:String = "default", _ songs:[Song] = []) {
         self.name = name
+        self.songs = songs
     }
+    
+    
+    static func ==(lhs: SetList, rhs: SetList) -> Bool {
+        if lhs.name != rhs.name {
+            return false
+        } else {
+            return true
+        }
+    }
+    
 }

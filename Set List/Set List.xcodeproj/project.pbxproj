@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480FD60F200EFBD300229A63 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 480FD60E200EFBD300229A63 /* Localizable.stringsdict */; };
 		484EBDD01FDC55970088A584 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EBDCF1FDC55970088A584 /* TableViewCell.swift */; };
 		484EBDD21FDC598C0088A584 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EBDD11FDC598C0088A584 /* AddItemViewController.swift */; };
 		4866CE481FDC120800F6DF7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE471FDC120800F6DF7B /* AppDelegate.swift */; };
@@ -18,10 +19,16 @@
 		4866CE681FDC120800F6DF7B /* Set_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE671FDC120800F6DF7B /* Set_ListUITests.swift */; };
 		4866CE771FDC147400F6DF7B /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE761FDC147400F6DF7B /* Song.swift */; };
 		4866CE791FDC157600F6DF7B /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866CE781FDC157600F6DF7B /* SetList.swift */; };
+		48903EAA201812050052DA68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48903EA9201812050052DA68 /* Localizable.strings */; };
 		489C7FB61FEDF7C700EC3624 /* SetListDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */; };
 		489C7FB81FEDFCF200EC3624 /* SetListDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */; };
+		489C7FFF1FF1FB1800EC3624 /* SetListDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 489C7FFD1FF1FB1800EC3624 /* SetListDataModel.xcdatamodeld */; };
+		489C80061FF20EE100EC3624 /* SongMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C80051FF20EE100EC3624 /* SongMapper.swift */; };
+		489C80081FF20EE800EC3624 /* SetListMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C80071FF20EE800EC3624 /* SetListMapper.swift */; };
+		489C800A1FF2121800EC3624 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C80091FF2121800EC3624 /* Mapper.swift */; };
 		489E6BDC1FDF225E0097F53C /* SetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E6BDB1FDF225E0097F53C /* SetListViewController.swift */; };
 		489E6BE01FDF2B450097F53C /* SetListItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E6BDF1FDF2B450097F53C /* SetListItemViewCell.swift */; };
+		48FE4EE0201966090093C6A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48FE4EDF201966090093C6A6 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		480FD60E200EFBD300229A63 /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		484EBDCF1FDC55970088A584 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		484EBDD11FDC598C0088A584 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		4866CE441FDC120800F6DF7B /* Set List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Set List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,10 +67,16 @@
 		4866CE691FDC120800F6DF7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4866CE761FDC147400F6DF7B /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		4866CE781FDC157600F6DF7B /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
+		48903EA9201812050052DA68 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListDataStoreProtocol.swift; sourceTree = "<group>"; };
 		489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListDataStore.swift; sourceTree = "<group>"; };
+		489C7FFE1FF1FB1800EC3624 /* SongModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SongModel.xcdatamodel; sourceTree = "<group>"; };
+		489C80051FF20EE100EC3624 /* SongMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongMapper.swift; sourceTree = "<group>"; };
+		489C80071FF20EE800EC3624 /* SetListMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListMapper.swift; sourceTree = "<group>"; };
+		489C80091FF2121800EC3624 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		489E6BDB1FDF225E0097F53C /* SetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListViewController.swift; sourceTree = "<group>"; };
 		489E6BDF1FDF2B450097F53C /* SetListItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItemViewCell.swift; sourceTree = "<group>"; };
+		48FE4EDF201966090093C6A6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +107,7 @@
 		4866CE3B1FDC120700F6DF7B = {
 			isa = PBXGroup;
 			children = (
+				489C80031FF20EBF00EC3624 /* Data */,
 				4866CE461FDC120800F6DF7B /* Set List */,
 				4866CE5B1FDC120800F6DF7B /* Set ListTests */,
 				4866CE661FDC120800F6DF7B /* Set ListUITests */,
@@ -113,8 +128,6 @@
 		4866CE461FDC120800F6DF7B /* Set List */ = {
 			isa = PBXGroup;
 			children = (
-				489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */,
-				489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */,
 				489E6BDD1FDF2AEA0097F53C /* SetLists */,
 				489E6BDE1FDF2B130097F53C /* SongsList */,
 				4866CE751FDC145D00F6DF7B /* Model */,
@@ -124,6 +137,9 @@
 				4866CE501FDC120800F6DF7B /* LaunchScreen.storyboard */,
 				4866CE531FDC120800F6DF7B /* Info.plist */,
 				484EBDD11FDC598C0088A584 /* AddItemViewController.swift */,
+				480FD60E200EFBD300229A63 /* Localizable.stringsdict */,
+				48903EA9201812050052DA68 /* Localizable.strings */,
+				48FE4EDF201966090093C6A6 /* Localizable.strings */,
 			);
 			path = "Set List";
 			sourceTree = "<group>";
@@ -153,6 +169,27 @@
 				4866CE781FDC157600F6DF7B /* SetList.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		489C80031FF20EBF00EC3624 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				489C7FFD1FF1FB1800EC3624 /* SetListDataModel.xcdatamodeld */,
+				489C80041FF20ECE00EC3624 /* Mapper */,
+				489C7FB51FEDF7C700EC3624 /* SetListDataStoreProtocol.swift */,
+				489C7FB71FEDFCF200EC3624 /* SetListDataStore.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		489C80041FF20ECE00EC3624 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				489C80051FF20EE100EC3624 /* SongMapper.swift */,
+				489C80071FF20EE800EC3624 /* SetListMapper.swift */,
+				489C80091FF2121800EC3624 /* Mapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		489E6BDD1FDF2AEA0097F53C /* SetLists */ = {
@@ -283,8 +320,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48903EAA201812050052DA68 /* Localizable.strings in Resources */,
+				48FE4EE0201966090093C6A6 /* Localizable.strings in Resources */,
 				4866CE521FDC120800F6DF7B /* LaunchScreen.storyboard in Resources */,
 				4866CE4F1FDC120800F6DF7B /* Assets.xcassets in Resources */,
+				480FD60F200EFBD300229A63 /* Localizable.stringsdict in Resources */,
 				4866CE4D1FDC120800F6DF7B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,13 +352,17 @@
 			files = (
 				489C7FB81FEDFCF200EC3624 /* SetListDataStore.swift in Sources */,
 				484EBDD01FDC55970088A584 /* TableViewCell.swift in Sources */,
+				489C800A1FF2121800EC3624 /* Mapper.swift in Sources */,
 				489E6BDC1FDF225E0097F53C /* SetListViewController.swift in Sources */,
+				489C80061FF20EE100EC3624 /* SongMapper.swift in Sources */,
 				4866CE791FDC157600F6DF7B /* SetList.swift in Sources */,
 				4866CE4A1FDC120800F6DF7B /* SongListViewController.swift in Sources */,
 				4866CE771FDC147400F6DF7B /* Song.swift in Sources */,
 				489C7FB61FEDF7C700EC3624 /* SetListDataStoreProtocol.swift in Sources */,
 				4866CE481FDC120800F6DF7B /* AppDelegate.swift in Sources */,
+				489C7FFF1FF1FB1800EC3624 /* SetListDataModel.xcdatamodeld in Sources */,
 				489E6BE01FDF2B450097F53C /* SetListItemViewCell.swift in Sources */,
+				489C80081FF20EE800EC3624 /* SetListMapper.swift in Sources */,
 				484EBDD21FDC598C0088A584 /* AddItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -435,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -619,6 +665,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		489C7FFD1FF1FB1800EC3624 /* SetListDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				489C7FFE1FF1FB1800EC3624 /* SongModel.xcdatamodel */,
+			);
+			currentVersion = 489C7FFE1FF1FB1800EC3624 /* SongModel.xcdatamodel */;
+			path = SetListDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4866CE3C1FDC120700F6DF7B /* Project object */;
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class SetListItemViewCell: UITableViewCell {
 
+    @IBOutlet weak var songCount: UILabel!
     @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
