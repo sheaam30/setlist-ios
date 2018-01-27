@@ -134,7 +134,7 @@ class SetListViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "setListItem") as? SetListItemViewCell
         cell?.name.text = listOfSetLists[indexPath.row].name
         
-        let format = NSLocalizedString("NumberOfMessages", comment: "")
+        let format = NSLocalizedString("NumberOfSongs", comment: "")
         let message = String.localizedStringWithFormat(format, listOfSetLists[indexPath.row].songs.count)
         cell?.songCount.text = message
         return cell!
